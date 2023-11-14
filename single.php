@@ -9,7 +9,18 @@
 
 get_header();
 ?>
-
+<style>
+    .nav-title{
+        color: #ef4229;
+        text-transform: uppercase;
+    }
+    .comments{
+        border: 1px solid #ef4229;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+</style>
 <main id="primary" class="site-main">
 
     <?php
@@ -27,12 +38,12 @@ get_header();
                 'next_text' => '<span class="nav-subtitle">' . esc_html__('Next:', 'multimedijalnisistemi') . '</span> <span class="nav-title">%title</span>',
             )
         );
-
-        // If comments are open or we have at least one comment, load up the comment template.
-        if (comments_open() || get_comments_number()) :
-            comments_template();
-        endif;
-
+        echo '<div class="comments">';
+            // If comments are open or we have at least one comment, load up the comment template.
+            if (comments_open() || get_comments_number()) :
+                comments_template();
+            endif;
+        echo '</div>';
     endwhile; // End of the loop.
     ?>
 

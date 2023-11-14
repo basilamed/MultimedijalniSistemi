@@ -32,13 +32,15 @@ get_header();
 	}
 	.entry-header{
 		text-align: center;
-		background-color: #f1f1f1;
 		max-width: 450px;
 	}
 	.entry-title{
 		color: #ef4229;}
 	article{
-		background-color: #f1f1f1;
+        background-color: #fff;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
 		box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
 	}
     .post-thumbnail{
