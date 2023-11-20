@@ -8,42 +8,6 @@
  */
 
 ?>
-<style>
-	.slika{
-		width: 100%;
-		height: 400px;
-		object-fit: cover;
-	}
-	.post-thumbnail{
-		width: 100%;
-		height: 400px;
-	}
-	.ingredient {
-        font-weight: bold;
-        color: #333;
-    }
-
-    .preparation {
-        margin-top: 10px;
-    }
-	.priprema{
-		font-weight: bold;
-		background: linear-gradient(to right, #990000, #ff6600);
-		padding: 10px;
-		color: #fff;
-		text-align: center;
-	}
-
-    .baking-time, .baking-temperature{
-        margin-top: 10px;
-        font-weight: bold;
-        color: #990000; /* Dark red color */
-    }
-	.basic{
-		display: flex;
-		justify-content: space-around;
-	}
-</style>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
 		<?php
@@ -90,10 +54,10 @@
 		?>
 		<div class="basic">
 			<div class="baking-time">
-				<h2>Vreme pecenja: <?php echo get_field('vreme_pecenja'); ?> min </h2>
+				<h2>Vreme pripreme: <?php echo get_field('vreme_pecenja'); ?> min </h2>
 			</div>
 			<div class="baking-temperature">
-				<h2>Temperatura pecenja: <?php echo get_field('temperatura_pecenja'); ?> c</h2>
+				<h2>Temperatura pečenja: <?php echo get_field('temperatura_pecenja'); ?> c</h2>
 			</div>
 		</div>
 		
@@ -114,7 +78,7 @@
 		
 		<div class="preparation">
 			<h2 class='priprema'>Priprema</h2>
-			<?php echo get_field('priprema'); ?>
+			<p><?php echo get_field('priprema'); ?></p>
 		</div>
 		
 		<?php

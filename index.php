@@ -14,46 +14,11 @@
 
 get_header();
 ?>
-<style>
-    .page-header img {
-        width: 100%;
-        height: auto;
-        
-    }
-
-    .article-container {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-around;
-		padding:  0 40px
-    }
-	.naslov{
-		text-align: center;
-	}
-	.entry-header{
-		text-align: center;
-		max-width: 450px;
-	}
-	.entry-title{
-		color: #ef4229;}
-	article{
-        background-color: #fff;
-        margin: 10px 0;
-        padding: 10px;
-        border-radius: 5px;
-		box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
-	}
-    .post-thumbnail{
-        padding: 10px 0 10px 10px;
-    }
-   
-
-</style>
 <header class="page-header">
             <?php
             $header_image_url = get_header_image();
             if ($header_image_url) {
-                echo '<img src="' . esc_url($header_image_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+                echo '<img src=" ' . esc_url($header_image_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
             }
             ?>
 </header>

@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: Basila Medjedovic :)
 Author URI: http://underscores.me/
 Description: Description
-Version: 1.1.0
+Version: 1.0.0
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -87,15 +87,14 @@ body {
 /**
  * Render the `main` element consistently in IE.
  */
-main {
+.site-main {
 	flex: 1;
 	display: block;
 	width: 70%;
 	float: left;
-	padding: 0 10px 150px 30px;
+	padding: 0 10px 250px 30px;
 	
 }
-
 
 /**
  * Correct the font size and margin on `h1` elements within `section` and
@@ -670,6 +669,157 @@ textarea {
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
+.page-header img {
+	width: 100%;
+	height: auto;
+	
+}
+
+.article-container {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding:  0 40px
+}
+.naslov{
+	text-align: center;
+}
+.entry-header{
+	text-align: center;
+	max-width: 450px;
+}
+.entry-title{
+	color: #ef4229;}
+article{
+	background-color: #fff;
+	margin: 10px 0;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);
+}
+.post-thumbnail{
+	padding: 10px 0 10px 10px;
+}
+
+.site-header {
+	width: 100%;
+}
+.logo{
+	width: 150px;
+	height: auto;
+	padding: 10px;
+}
+.logo-link{
+	margin: 0 auto;
+}
+.site-header-logo{
+	background-color: #f1f1f1;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.slika{
+	width: 100%;
+	height: 400px;
+	object-fit: cover;
+}
+.ingredient {
+	font-weight: bold;
+	color: #333;
+}
+
+.preparation {
+	margin-top: 10px;
+	padding: 10px auto;
+}
+.preparation p{
+	padding: 0 50px;
+	text-align: justify;
+}
+.priprema{
+	font-weight: bold;
+	background: linear-gradient(to right, #990000, #ff6600);
+	padding: 10px;
+	color: #fff;
+	text-align: center;
+}
+
+.baking-time, .baking-temperature{
+	margin-top: 10px;
+	font-weight: bold;
+	color: #990000;
+}
+.basic{
+	display: flex;
+	justify-content: space-around;
+}
+
+.site-footer{
+	background-color: #ef4229;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	color: #fff;
+	padding: 0 20px;
+}
+.site-info{
+	margin: auto;
+	display: flex;
+	justify-content: center;
+	
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.footer-section {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.footer-section h2 {
+    color: #fff;
+}
+
+.footer-section p {
+    line-height: 1.5;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    text-decoration: none;
+    color: #fff;
+}
+
+/* Style the bottom bar */
+.bottom-bar {
+    color: #fff;
+    padding: 10px 0;
+	text-align: center;
+}
+
+.bottom-bar p {
+    margin: 0;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+}
 
 /* Navigation
 --------------------------------------------- */
@@ -993,3 +1143,4 @@ textarea {
 	margin-right: auto;
 	margin-bottom: 1.5em;
 }
+
