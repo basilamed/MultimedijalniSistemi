@@ -34,14 +34,15 @@
 		<a href="<?php echo esc_url( home_url( '/' ) ); ?>" class="logo-link">
 			<img src="<?php echo $image[0]; ?>" alt="Logo" class="logo">
 		</a>
-		<!-- <p class="site-description"><?php bloginfo( 'description' ); ?></p>
+		<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 		</div>
 		<?php
-		wp_nav_menu( array(
-			'theme_location' => 'menu-1',
-		) );
-	?>
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+			wp_nav_menu(array(
+				'theme_location' => 'menu-1',
+				'menu_class'     => 'your-menu-class', // Add a custom class to style the menu
+			));
+		?>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
   </header><!-- .site-header -->
  

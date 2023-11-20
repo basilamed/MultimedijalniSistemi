@@ -669,6 +669,51 @@ textarea {
 /*--------------------------------------------------------------
 # Components
 --------------------------------------------------------------*/
+.your-menu-class {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+/* Style each menu item */
+.your-menu-class li {
+    margin-right: 20px;
+    position: relative;
+}
+
+/* Style the links in the menu */
+.your-menu-class a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 10px;
+    display: block;
+}
+
+/* Style sub-menus */
+.your-menu-class ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    display: none;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Style sub-menu items */
+.your-menu-class ul li {
+    width: 150px; /* Adjust the width as needed */
+}
+
+/* Show sub-menus on hover */
+.your-menu-class li:hover > ul {
+    display: block;
+}
 .page-header img {
 	width: 100%;
 	height: auto;
@@ -689,8 +734,9 @@ textarea {
 	max-width: 450px;
 }
 .entry-title{
-	color: #ef4229;}
-article{
+	color: #ef4229;
+}
+.index-class {
 	background-color: #fff;
 	margin: 10px 0;
 	padding: 10px;

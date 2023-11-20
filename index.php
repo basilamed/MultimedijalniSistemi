@@ -21,7 +21,10 @@ get_header();
                 echo '<img src=" ' . esc_url($header_image_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
             }
             ?>
+            
 </header>
+
+
 <div class="naslov">	
 	<h1>Inspiriši se i pripremi nešto dobro!</h1>
 </div>
@@ -44,7 +47,7 @@ get_header();
         while (have_posts()) :
             the_post();
             ?>
-            <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+            <article id="post-<?php the_ID(); ?>" class='index-class'>
                 <?php
                 if (has_post_thumbnail()) {
                     ?>
