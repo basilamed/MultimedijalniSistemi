@@ -56,9 +56,17 @@
 			<div class="baking-time">
 				<h2>Vreme pripreme: <?php echo get_field('vreme_pecenja'); ?> min </h2>
 			</div>
-			<div class="baking-temperature">
-				<h2>Temperatura pečenja: <?php echo get_field('temperatura_pecenja'); ?> c</h2>
-			</div>
+
+			<?php
+			$temperatura_pecenja = get_field('temperatura_pecenja');
+
+			// Check if the field is not empty before displaying it
+			if (!empty($temperatura_pecenja)) {
+			?>
+				<div class="baking-temperature">
+					<h2>Temperatura pečenja: <?php echo $temperatura_pecenja; ?>°C</h2>
+				</div>
+			<?php } ?>
 		</div>
 		
 		<div class="ingredient">
