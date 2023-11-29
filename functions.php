@@ -181,6 +181,7 @@ function multimedijalnisistemi_setup() {
 	register_nav_menus(
 		array(
 			'menu-1' => esc_html__( 'Primary', 'multimedijalnisistemi' ),
+			'footer_menu' => esc_html__( 'Footer', 'multimedijalnisistemi' ),
 		)
 	);
 
@@ -214,7 +215,6 @@ function multimedijalnisistemi_setup() {
 	);
 	add_image_size('custom-size', 450, 300, false);
 	//add_image_size('custom', 650, 400, true);
-
 
 	// Add theme support for selective refresh for widgets.
 	add_theme_support( 'customize-selective-refresh-widgets' );
@@ -257,7 +257,7 @@ add_action( 'after_setup_theme', 'multimedijalnisistemi_content_width', 0 );
 function multimedijalnisistemi_widgets_init() {
 	register_sidebar(
 		array(
-			'name'          => esc_html__( 'Sidebar', 'multimedijalnisistemi' ),
+			'name'          => esc_html__( 'weCook Sidebar', 'multimedijalnisistemi' ),
 			'id'            => 'sidebar-1',
 			'description'   => esc_html__( 'Add widgets here.', 'multimedijalnisistemi' ),
 			'before_widget' => '<section id="%1$s" class="widget %2$s">',
@@ -266,6 +266,33 @@ function multimedijalnisistemi_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
+	register_sidebar( array(
+		'name'			=> 'Footer Sidebar 1',
+		'id'			=> 'we-cook-sidebar-footer1',
+		'description'	=> 'Drag and drop your widgets here',
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );
+	register_sidebar( array(
+		'name'			=> 'Footer Sidebar 2',
+		'id'			=> 'we-cook-sidebar-footer2',
+		'description'	=> 'Drag and drop your widgets here',
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );
+	register_sidebar( array(
+		'name'			=> 'Footer Sidebar 3',
+		'id'			=> 'we-cook-sidebar-footer3',
+		'description'	=> 'Drag and drop your widgets here',
+		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+		'after_widget'	=> '</div>',
+		'before_title'	=> '<h4 class="widget-title">',
+		'after_title'	=> '</h4>',
+	) );	
 }
 add_action( 'widgets_init', 'multimedijalnisistemi_widgets_init' );
 
