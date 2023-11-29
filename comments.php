@@ -31,7 +31,7 @@ if ( have_comments() ) :
 		if ( '1' === $multimedijalnisistemi_comment_count ) {
 			printf(
 				/* translators: 1: title. */
-				esc_html__( 'Jedno mišljanje o &ldquo;%1$s&rdquo;', 'multimedijalnisistemi' ),
+				esc_html__( 'Jedno mišljenje o &ldquo;%1$s&rdquo;', 'multimedijalnisistemi' ),
 				'<span>' . wp_kses_post( get_the_title() ) . '</span>'
 			);
 		} else {

@@ -266,16 +266,19 @@ function multimedijalnisistemi_widgets_init() {
 			'after_title'   => '</h2>',
 		)
 	);
-	register_sidebar( array(
-		'name'			=> 'Footer Sidebar 1',
-		'id'			=> 'we-cook-sidebar-footer1',
-		'description'	=> 'Drag and drop your widgets here',
-		'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
-		'after_widget'	=> '</div>',
-		'before_title'	=> '<h4 class="widget-title">',
-		'after_title'	=> '</h4>',
-	) );
-	register_sidebar( array(
+	register_sidebar( 
+		array(
+			'name'			=> 'Footer Sidebar 1',
+			'id'			=> 'we-cook-sidebar-footer1',
+			'description'	=> 'Drag and drop your widgets here',
+			'before_widget'	=> '<div id="%1$s" class="widget %2$s widget-wrapper">', 
+			'after_widget'	=> '</div>',
+			'before_title'	=> '<h4 class="widget-title">',
+			'after_title'	=> '</h4>',
+		) 
+	);
+	register_sidebar( 
+		array(
 		'name'			=> 'Footer Sidebar 2',
 		'id'			=> 'we-cook-sidebar-footer2',
 		'description'	=> 'Drag and drop your widgets here',
@@ -283,8 +286,10 @@ function multimedijalnisistemi_widgets_init() {
 		'after_widget'	=> '</div>',
 		'before_title'	=> '<h4 class="widget-title">',
 		'after_title'	=> '</h4>',
-	) );
-	register_sidebar( array(
+		) 
+	);
+	register_sidebar( 
+		array(
 		'name'			=> 'Footer Sidebar 3',
 		'id'			=> 'we-cook-sidebar-footer3',
 		'description'	=> 'Drag and drop your widgets here',
@@ -292,7 +297,8 @@ function multimedijalnisistemi_widgets_init() {
 		'after_widget'	=> '</div>',
 		'before_title'	=> '<h4 class="widget-title">',
 		'after_title'	=> '</h4>',
-	) );	
+		)
+	);	
 }
 add_action( 'widgets_init', 'multimedijalnisistemi_widgets_init' );
 
