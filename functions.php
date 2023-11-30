@@ -324,6 +324,20 @@ function multimedijalnisistemi_widgets_init() {
 }
 add_action( 'widgets_init', 'multimedijalnisistemi_widgets_init' );
 
+function create_posttype() {
+	register_post_type( 'wpll_recipe',
+	  array(
+		'labels' => array(
+		  'name' => __( 'Recipes' ),
+		  'singular_name' => __( 'Recipe' )
+		),
+		'public' => true,
+		'has_archive' => true,
+		'rewrite' => array('slug' => 'recipes'),
+	  )
+	);
+  }
+  add_action( 'init', 'create_posttype' );
 /**
  * Enqueue scripts and styles.
  */
