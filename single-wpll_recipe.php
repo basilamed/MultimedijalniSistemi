@@ -26,10 +26,8 @@ get_header();
     <?php
     while (have_posts()) :
         the_post();
-echo"Ovo radi";
         // Display the post thumbnail at a specific size
         
-
         get_template_part('template-parts/content', get_post_type());
 
         the_post_navigation(

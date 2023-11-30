@@ -8,6 +8,17 @@
  */
 
 ?>
+<style>
+	.image-recipe{
+		width: 100%;
+		height: 350px;
+	}
+	.image-recipe img{
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+</style>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?> >
 	<header class="entry-header">
 		<?php
@@ -17,7 +28,7 @@
 			the_title( '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
 		endif;
 
-		if ( 'post' === get_post_type() ) :
+		if ( 'post' === get_post_type() || 'wpll_recipe' === get_post_type()) :
 			?>
 			<div class="entry-meta">
 				<?php
@@ -34,6 +45,15 @@
 		echo '</div>';
 	}
 	?>
+	<?php
+			$image = get_field('image');
+
+			if (!empty($image)) {
+			?>
+				<div class="image-recipe">
+					<img class="image" src="<?php echo $image; ?>" alt="slika recepta">
+				</div>
+			<?php } ?>
 
 	<div class="entry-content">
 		<?php

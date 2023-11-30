@@ -334,6 +334,7 @@ function create_posttype() {
 		'public' => true,
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'recipes'),
+		'taxonomies' => array('category', 'post_tag'),
 	  )
 	);
   }
