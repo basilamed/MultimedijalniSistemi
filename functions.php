@@ -41,7 +41,6 @@ function theme_customize_register($wp_customize) {
 }
 add_action('customize_register', 'theme_customize_register');
 
-// Dodajte ovo u functions.php teme
 function enqueue_jquery() {
     wp_enqueue_script('jquery');
 }
