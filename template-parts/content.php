@@ -54,6 +54,24 @@
 					<img class="image" src="<?php echo $image; ?>" alt="slika recepta">
 				</div>
 			<?php } ?>
+			<?php
+			$image = get_field('slika');
+
+			if (!empty($image)) {
+			?>
+				<div class="image-recipe">
+					<img class="image" src="<?php echo $image; ?>" alt="slika recepta">
+				</div>
+			<?php } ?>
+			<?php
+			$tekst = get_field('tekst');
+
+			if (!empty($tekst)) {
+			?>
+				<div class="preparation">
+					<?php echo $tekst; ?>
+				</div>
+			<?php } ?>
 
 	<div class="entry-content">
 		<?php
@@ -73,41 +91,47 @@
 		);
 		?>
 		<div class="basic">
-			<div class="baking-time">
-				<h2>Vreme pripreme: <?php echo get_field('vreme_pecenja'); ?> min </h2>
-			</div>
+			<?php
+			$vreme_pecenja = get_field('vreme_pecenja');
+			if (!empty($vreme_pecenja)) {
+			?>
+				<div class="baking-time">
+					<h2>Vreme pecenja: <?php echo $vreme_pecenja; ?> min</h2>
+				</div>
+			<?php } ?>
 
 			<?php
 			$temperatura_pecenja = get_field('temperatura_pecenja');
 
-			// Check if the field is not empty before displaying it
 			if (!empty($temperatura_pecenja)) {
 			?>
 				<div class="baking-temperature">
 					<h2>Temperatura pečenja: <?php echo $temperatura_pecenja; ?>°C</h2>
 				</div>
 			<?php } ?>
+
 		</div>
-		
-		<div class="ingredient">
-			<h2 class='priprema'>Sastojci</h2>
 			<?php
-				$ingredients = get_field('sastojak');
-				if ($ingredients) {
-					$ingredient_list = explode(',', $ingredients);
-					echo '<ul>';
-					foreach ($ingredient_list as $ingredient) {
-						echo '<li>' . esc_html(trim($ingredient)) . '</li>';
-					}
-					echo '</ul>';
-				}		
+			$ingredients = get_field('sastojak');
+			if ($ingredients) {
+				echo "<div class='ingredient'><h2 class='priprema'>Sastojci</h2>";
+				$ingredient_list = explode(',', $ingredients);
+				echo '<ul>';
+				foreach ($ingredient_list as $ingredient) {
+					echo '<li>' . esc_html(trim($ingredient)) . '</li>';
+				}
+				echo '</ul>';
+				echo "</div>";
+			}
 			?>
-		</div>
-		
-		<div class="preparation">
-			<h2 class='priprema'>Priprema</h2>
-			<p><?php echo get_field('priprema'); ?></p>
-		</div>
+			<?php
+			$prep = get_field('priprema');
+			if ($ingredients) {
+				echo "<div class='preparation'><h2 class='priprema'>Priprema</h2><p>";
+				echo get_field('priprema');
+				echo "</p></div>";
+			}
+			?>
 		
 		<?php
 		wp_link_pages(

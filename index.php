@@ -182,11 +182,13 @@ get_header();
             ?>
             <article id="post-<?php the_ID(); ?>" class='index-class'>
                 <?php
-                if (has_post_thumbnail()) {
-                    ?>
+                $image = get_field('slika');
+
+                if (!empty($image)) {
+                ?>
                     <div class="post-thumbnail">
                         <a href="<?php the_permalink(); ?>" aria-hidden="true" tabindex="-1">
-                            <?php the_post_thumbnail('custom-size'); ?>
+                            <img src="<?php echo $image; ?>" alt="slika recepta" width="400" height="300">
                         </a>
                     </div>
                     <?php
