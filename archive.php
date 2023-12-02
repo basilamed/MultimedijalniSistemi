@@ -13,22 +13,7 @@ get_header();
 	<main id="primary" class="site-main">
 
 		<?php 
-		//we get the special post type
-		$query_args_1 = array(
-			'post_type' => 'wpll_recipe'
-		);
-		$query_1 = new WP_Query($query_args_1);
-		$merged_query = new WP_Query();
-		$merged_query->posts = array_merge($query_1->posts);
-		if ($query_1->have_posts()) :
-			while ($query_1->have_posts()) : $query_1->the_post();
-				get_template_part( 'template-parts/content', get_post_type() );
-			endwhile;
-			wp_reset_postdata();
-		else :
-			echo 'No posts found';
-		endif;
-		if ( have_posts() ) : ?>
+		if ( have_posts()) : ?>
 
 			<header class="page-header">
 				<?php

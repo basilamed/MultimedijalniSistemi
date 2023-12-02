@@ -498,6 +498,7 @@ function create_posttype() {
 		  'singular_name' => __( 'Recipe' )
 		),
 		'public' => true,
+		'exclude_from_search' => false,
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'recipes'),
 		'taxonomies' => array('category', 'post_tag'),
@@ -505,6 +506,7 @@ function create_posttype() {
 	);
   }
   add_action( 'init', 'create_posttype' );
+  
 /**
  * Enqueue scripts and styles.
  */

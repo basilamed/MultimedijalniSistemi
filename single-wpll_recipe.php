@@ -36,12 +36,12 @@ get_header();
                 'next_text' => '<span class="nav-subtitle">' . esc_html__('Sledeći:', 'multimedijalnisistemi') . '</span> <span class="nav-title">%title</span>',
             )
         );
-        echo '<div class="comments">';
-            // If comments are open or we have at least one comment, load up the comment template.
-            if (comments_open() || get_comments_number()) :
-                comments_template();
-            endif;
-        echo '</div>';
+        // echo '<div class="comments">';
+        //     // If comments are open or we have at least one comment, load up the comment template.
+        //     if (comments_open() || get_comments_number()) :
+        //         comments_template();
+        //     endif;
+        // echo '</div>';
     endwhile; // End of the loop.
     ?>
 
