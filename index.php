@@ -14,16 +14,106 @@
 
 get_header();
 ?>
-<header class="page-header">
-            <?php
-            $header_image_url = get_header_image();
-            if ($header_image_url) {
-                echo '<img src=" ' . esc_url($header_image_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
-            }
-            ?>
-            
-</header>
+<style>
+    /* Your existing styles */
 
+    #slider-container {
+        width: 100%; /* Adjust the width as needed */
+        overflow: hidden; /* Ensure the container hides overflow for the slider */
+        height: 650px;
+    }
+
+    #slider {
+        display: flex; /* Use flex to arrange slider items in a row */
+        transition: transform 0.5s ease-in-out; /* Add smooth transition effect */
+    }
+
+    .slider-item {
+        flex: 0 0 100%; /* Set each item to take 100% width */
+    }
+
+    .slick-prev,
+    .slick-next {
+        position: absolute;
+        top: 30%;
+        transform: translateY(-50%);
+        z-index: 1; /* Ensure the buttons appear above the images */
+        color: #fff; /* Adjust the color of the buttons */
+        font-size: 24px; /* Adjust the font size of the buttons */
+        background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+        border: none;
+        cursor: pointer;
+        padding: 10px;
+    }
+
+    .slick-prev {
+        left: 10px;
+    }
+
+    .slick-next {
+        right: 10px;
+    }
+
+    .slick-dots {
+    display: none !important;
+}
+
+    #slider img {
+    max-width: 100%; /* Set the maximum width to 100% of the container */
+    height: auto; /* Allow the height to adjust proportionally */
+}
+
+    /* Rest of your styles */
+</style>
+<!-- 
+<header class="page-header">
+    <?php
+    $header_image_url = get_header_image();
+    if ($header_image_url) {
+        echo '<img src="' . esc_url($header_image_url) . '" alt="' . esc_attr(get_bloginfo('name')) . '">';
+    }
+    ?>
+</header> -->
+
+<div id="slider-container">
+    <div id="slider">
+        <?php
+        for ($i = 1; $i <= 4; $i++) {
+            $image_url = get_theme_mod('slider_image_' . $i, ''); // Get image URL from theme customization
+            $text = get_theme_mod('slider_text_' . $i, ''); // Get text from theme customization
+
+            // Display image and text
+            if (!empty($image_url)) {
+                echo '<div class="slider-item">';
+                echo '<img src="' . esc_url($image_url) . '" alt="Slider Image ' . $i . '">';
+
+                echo '</div>';
+            }
+        }
+        ?>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+
+<script>
+   $(document).ready(function () {
+    // Initialize the Slick slider
+    $('#slider-container').slick({
+        dots: false,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        adaptiveHeight: true,
+        appendArrows: $('#slider-container'), // Specify where to append the navigation arrows
+        appendDots: $('#slider-container'), // Specify where to append the pagination dots
+    });
+
+    // Remove a specific dot (for example, the fourth dot)
+    $('#slider-container .slick-dots li:eq(3)').remove();
+});
+</script>
 
 <div class="naslov">	
 	<h1>Inspiriši se i pripremi nešto dobro!</h1>
