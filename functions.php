@@ -420,6 +420,10 @@ add_action( 'after_setup_theme', 'multimedijalnisistemi_content_width', 0 );
  *
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
+function custom_modify_recent_posts_query($args) {
+    $args['post_type'] = array('post', 'wpll_recipe');
+    return $args;
+}
 function multimedijalnisistemi_widgets_init() {
 	register_sidebar(
 		array(

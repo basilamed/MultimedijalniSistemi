@@ -22,8 +22,15 @@ get_header();
 
 					<?php
 					get_search_form();
+					// Modify the recent posts widget query to include custom post types
+					 // Modify the recent posts widget query to include custom post types
+					 add_filter('widget_posts_args', 'custom_modify_recent_posts_query');
 
-					the_widget( 'WP_Widget_Recent_Posts' );
+					 the_widget('WP_Widget_Recent_Posts');
+		 
+					 // Remove the filter to avoid affecting other queries
+					 remove_filter('widget_posts_args', 'custom_modify_recent_posts_query');
+				   
 					?>
 
 					<div class="widget widget_categories">
