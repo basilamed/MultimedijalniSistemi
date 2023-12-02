@@ -58,7 +58,7 @@ if ( ! function_exists( 'multimedijalnisistemi_entry_footer' ) ) :
 	 */
 	function multimedijalnisistemi_entry_footer() {
 		// Hide category and tag text for pages.
-		if ( 'post' === get_post_type() ) {
+		if ( 'post' === get_post_type() || 'wpll_recipe' === get_post_type()) {
 			/* translators: used between list items, there is a space after the comma */
 			$categories_list = get_the_category_list( esc_html__( ', ', 'multimedijalnisistemi' ) );
 			if ( $categories_list ) {

@@ -70,10 +70,6 @@ html {
 	line-height: 1.15;
 	-webkit-text-size-adjust: 100%;
 }
-.naslovi{
-	text-align: center;
-	color:#990000
-}
 /* Sections
 	 ========================================================================== */
 
@@ -96,7 +92,7 @@ body {
 	width: 70%;
 	float: left;
 	padding: 0 10px 250px 30px;
-	
+	min-height: 110vh;
 }
 
 /**
