@@ -15,7 +15,6 @@ if ( ! is_active_sidebar( 'sidebar-1' ) ) {
 <aside id="secondary" class="widget-area">
 	
 	<?php  
-		//FIXME
 		// Modify the recent posts widget query to include custom post types
 		add_filter('widget_posts_args', 'custom_modify_recent_posts_query');
 

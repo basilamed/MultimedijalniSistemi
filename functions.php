@@ -9,8 +9,14 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.3.0' );
+	define( '_S_VERSION', '1.4.0' );
 }
+function include_custom_post_types_in_category_archive($query) {
+    if ($query->is_category && !is_admin()) {
+        $query->set('post_type', array('post', 'wpll_recipe'));
+    }
+}
+add_action('pre_get_posts', 'include_custom_post_types_in_category_archive');
 function theme_customize_register($wp_customize) {
     $wp_customize->add_section('slider_section', array(
         'title' => 'Slider',

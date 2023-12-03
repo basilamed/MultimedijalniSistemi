@@ -63,15 +63,6 @@
 					<img class="image" src="<?php echo $image; ?>" alt="slika recepta">
 				</div>
 			<?php } ?>
-			<?php
-			$tekst = get_field('tekst');
-
-			if (!empty($tekst)) {
-			?>
-				<div class="preparation">
-					<?php echo $tekst; ?>
-				</div>
-			<?php } ?>
 
 	<div class="entry-content">
 		<?php
