@@ -21,7 +21,7 @@ get_header();
         width: 100%; /* Adjust the width as needed */
         overflow: hidden; /* Ensure the container hides overflow for the slider */
         height: auto;
-        max-height: 500px;
+        max-height: 550px;
     }
 
     #slider {

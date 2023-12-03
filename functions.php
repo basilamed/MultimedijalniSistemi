@@ -512,6 +512,7 @@ function create_posttype() {
 		'has_archive' => true,
 		'rewrite' => array('slug' => 'recipes'),
 		'taxonomies' => array('category', 'post_tag'),
+		'supports' => array('title', 'editor', 'author', 'thumbnail', 'excerpt', 'comments'),
 	  )
 	);
   }

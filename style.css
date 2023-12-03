@@ -218,6 +218,12 @@ sup {
 		padding: 0 10px 250px 0px;
 		height: max-content;
 	}
+	.footer-section.about {
+		display: none;
+	}
+	.footer-section.contact {
+		display: none;
+	}
 }
 
 /* Embedded content
