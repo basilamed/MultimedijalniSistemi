@@ -21,17 +21,22 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 	<script>
-		$(document).ready(function () {
-			// Podešavanje slajdera
-			$('#slider').slick({
-				dots: true,
-				infinite: true,
-				speed: 300,
-				slidesToShow: 1,
-				adaptiveHeight: true
-			});
-		});
-	</script>
+        $(document).ready(function () {
+            // Podešavanje slajdera
+            $('#slider').slick({
+                dots: true,
+                infinite: true,
+                speed: 300,
+                slidesToShow: 1,
+                adaptiveHeight: true
+            });
+
+            // Prikazivanje/skrivanje hamburger menija
+            $('#mobile-menu-toggle').on('click', function() {
+                $('#mobile-menu-items').slideToggle();
+            });
+        });
+    </script>
 	<?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -50,12 +55,31 @@
 		</a>
 		<p class="site-description"><?php bloginfo( 'description' ); ?></p>
 		</div>
-		<?php
-			wp_nav_menu(array(
-				'theme_location' => 'menu-1',
-				'menu_class'     => 'your-menu-class', // Add a custom class to style the menu
-			));
-		?>
+		<!-- <?php
+                wp_nav_menu(array(
+                    'theme_location' => 'menu-1',
+                    'menu_class' => 'your-menu-class', // Dodaj custom klasu za stilizovanje menija
+                ));
+            ?> -->
+            <!-- Hamburger meni za mobilne ekrane -->
+            <div class="mobile-menu">
+                <div class="menu-toggle" id="mobile-menu-toggle">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="your-menu-class" id="mobile-menu-items">
+                    <?php
+                        // Dodajte ovde stavke menija
+                        wp_nav_menu(array(
+                            'theme_location' => 'menu-1',
+                            'container' => '',
+                            'items_wrap' => '%3$s', // Bez <ul> i <li> tagova
+							
+                        ));
+                    ?>
+                </div>
+            </div>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	
   </header><!-- .site-header -->

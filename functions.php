@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.5.0' );
+	define( '_S_VERSION', '1.6.0' );
 }
 function theme_custom_styles() {
     $menu_bg_color = get_theme_mod('menu_bg_color', '#ef4229');
@@ -494,6 +494,12 @@ function theme_custom() {
 			color: <?php echo esc_attr($color); ?>;
 		}
 		.your-menu-class {
+			background-color: <?php echo esc_attr($color); ?>;
+		}
+		.mobile-menu {
+			background-color: <?php echo esc_attr($color); ?>;
+		}
+		.menu-toggle {
 			background-color: <?php echo esc_attr($color); ?>;
 		}
 		.your-menu-class ul {

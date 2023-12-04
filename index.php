@@ -38,14 +38,21 @@ get_header();
         position: absolute;
         top: 30%;
         transform: translateY(-50%);
-        z-index: 1; /* Ensure the buttons appear above the images */
-        color: #fff; /* Adjust the color of the buttons */
-        font-size: 24px; /* Adjust the font size of the buttons */
-        background-color: rgba(0, 0, 0, 0.5); /* Add a semi-transparent background */
+        z-index: 1;
+        color: #fff;
+        font-size: 14px; /* Smanjite veličinu fonta */
+        padding: 5px;
+        background-color: rgba(0, 0, 0, 0.5);
         border: none;
         cursor: pointer;
-        padding: 10px;
     }
+
+    @media (max-width: 468px) {
+    .slick-prev,
+    .slick-next {
+        font-size: 12px; /* Dodatno smanjenje veličine fonta za manje ekrane */
+    }
+}
 
     .slick-prev {
         left: 10px;
