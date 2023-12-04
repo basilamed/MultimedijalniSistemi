@@ -4,7 +4,7 @@ Theme URI: http://underscores.me/
 Author: Basila Medjedovic :)
 Author URI: http://underscores.me/
 Description: Description
-Version: 1.4.0
+Version: 1.5.0
 Tested up to: 5.4
 Requires PHP: 5.6
 License: GNU General Public License v2 or later
@@ -686,17 +686,15 @@ textarea {
     margin: 0;
     padding: 0;
     display: flex;
-	background-color: #ef4229;
-	justify-content: center;
+    background-color: #ef4229;
+    justify-content: center;
 }
 
-/* Style each menu item */
 .your-menu-class li {
-    margin: 0 40px;
+    margin: 0 20px; /* Reduce margin for smaller screens */
     position: relative;
 }
 
-/* Style the links in the menu */
 .your-menu-class a {
     text-decoration: none;
     color: #fff;
@@ -706,11 +704,10 @@ textarea {
     display: block;
 }
 
-.your-menu-class a:visited{
-	color: #fff; 
+.your-menu-class a:visited {
+    color: #fff;
 }
 
-/* Style sub-menus */
 .your-menu-class ul {
     list-style: none;
     margin: 0;
@@ -723,14 +720,59 @@ textarea {
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Style sub-menu items */
 .your-menu-class ul li {
-    width: 150px; /* Adjust the width as needed */
+    width: 150px;
 }
 
-/* Show sub-menus on hover */
 .your-menu-class li:hover > ul {
     display: block;
+}
+
+/* Styles for smaller screens (hamburger menu) */
+@media screen and (max-width: 768px) {
+    .your-menu-class {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .your-menu-class li {
+        margin: 10px 0;
+    }
+
+    .your-menu-class ul {
+        top: 0;
+        background-color: #ef4229;
+        position: relative;
+        box-shadow: none;
+    }
+
+    .your-menu-class ul li {
+        width: 100%;
+    }
+
+    .your-menu-class li:hover > ul {
+        display: none;
+    }
+
+    .menu-icon {
+        display: block;
+        cursor: pointer;
+        font-size: 20px;
+        color: #fff;
+        order: -1;
+    }
+
+    .menu-icon:hover {
+        color: #ddd;
+    }
+
+    .your-menu-class input[type="checkbox"] {
+        display: none;
+    }
+
+    .your-menu-class input[type="checkbox"]:checked + ul {
+        display: block;
+    }
 }
 .page-header img {
 	width: 100%;

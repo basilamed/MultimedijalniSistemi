@@ -9,7 +9,7 @@
 
 if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
-	define( '_S_VERSION', '1.4.0' );
+	define( '_S_VERSION', '1.5.0' );
 }
 function include_custom_post_types_in_category_archive($query) {
     if ($query->is_category && !is_admin()) {
