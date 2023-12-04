@@ -64,7 +64,6 @@ get_header();
     height: auto; /* Allow the height to adjust proportionally */
 }
 .naslovi{
-	color:#990000;
     margin:auto 10px;
     text-align: center;
 }

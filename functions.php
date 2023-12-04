@@ -11,6 +11,16 @@ if ( ! defined( '_S_VERSION' ) ) {
 	// Replace the version number of the theme on each release.
 	define( '_S_VERSION', '1.5.0' );
 }
+function theme_custom_styles() {
+    $menu_bg_color = get_theme_mod('menu_bg_color', '#ef4229');
+    ?>
+    <style>
+        .your-menu-class {
+            background-color: <?php echo esc_attr($menu_bg_color); ?>;
+        }
+    </style>
+    <?php
+}
 function include_custom_post_types_in_category_archive($query) {
     if ($query->is_category && !is_admin()) {
         $query->set('post_type', array('post', 'wpll_recipe'));
@@ -385,6 +395,7 @@ function multimedijalnisistemi_setup() {
 			)
 		)
 	);
+
 	add_image_size('custom-size', 450, 300, false);
 	//add_image_size('custom', 650, 400, true);
 
@@ -407,7 +418,105 @@ function multimedijalnisistemi_setup() {
 	);
 }
 add_action( 'after_setup_theme', 'multimedijalnisistemi_setup' );
+function theme_customize($wp_customize) {
+    // Add a section for colors
+    $wp_customize->add_section('theme_colors', array(
+        'title' => __('Theme Colors', 'your-theme-slug'),
+        'priority' => 30,
+    ));
 
+    // Add a setting for background color
+    $wp_customize->add_setting('background_color', array(
+        'default' => '#ffffff',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Add a control for background color
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'background_color', array(
+        'label' => __('Background Color', 'your-theme-slug'),
+        'section' => 'theme_colors',
+    )));
+
+    // Add a setting for text color
+    $wp_customize->add_setting('text_color', array(
+        'default' => '#ef4229',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Add a control for text color
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'text_color', array(
+        'label' => __('Main Theme Color', 'your-theme-slug'),
+        'section' => 'theme_colors',
+    )));
+
+	// Add a setting for text color
+    $wp_customize->add_setting('gradient_color_first', array(
+        'default' => '#990000',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Add a control for text color
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'gradient_color_first', array(
+        'label' => __('First Gradient Color', 'your-theme-slug'),
+        'section' => 'theme_colors',
+    )));
+
+	// Add a setting for text color
+    $wp_customize->add_setting('gradient_color_second', array(
+        'default' => '#ff6600',
+        'sanitize_callback' => 'sanitize_hex_color',
+    ));
+
+    // Add a control for text color
+    $wp_customize->add_control(new WP_Customize_Color_Control($wp_customize, 'gradient_color_second', array(
+        'label' => __('Second Gradient Color', 'your-theme-slug'),
+        'section' => 'theme_colors',
+    )));
+}
+add_action('customize_register', 'theme_customize');
+function theme_custom() {
+    $background_color = get_theme_mod('background_color', '#ffffff');
+	$color = get_theme_mod('text_color', '#ef4229');
+	$gradient_color_first = get_theme_mod('gradient_color_first', '#990000');
+	$gradient_color_second = get_theme_mod('gradient_color_second', '#ff6600');
+    ?>
+    <style>
+        body {
+            background-color: <?php echo esc_attr($background_color); ?>;
+        }
+		.nav-title{
+        	color: <?php echo esc_attr($color); ?>;
+		}
+		.comments{
+			border: 1px solid <?php echo esc_attr($color); ?>;
+		}
+		a {
+			color: <?php echo esc_attr($color); ?>;
+		}
+		.your-menu-class {
+			background-color: <?php echo esc_attr($color); ?>;
+		}
+		.your-menu-class ul {
+			background-color: <?php echo esc_attr($color); ?>;
+		}
+		.entry-title{
+			color: <?php echo esc_attr($color); ?>;
+		}
+		.site-footer{
+			background-color: <?php echo esc_attr($color); ?>;
+		}
+		.priprema{
+			background: linear-gradient(to right, <?php echo esc_attr($gradient_color_first); ?> , <?php echo esc_attr($gradient_color_second); ?>);
+		}
+
+		.baking-time, .baking-temperature{
+			color: <?php echo esc_attr($color); ?>;
+		}
+    </style>
+    <?php
+}
+
+add_action('wp_head', 'theme_custom');
 
 /**
  * Set the content width in pixels, based on the theme's design and stylesheet.
