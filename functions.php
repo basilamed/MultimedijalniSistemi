@@ -282,4 +282,65 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+function red_registration_form($atts) {
+	$atts = shortcode_atts( array(
+	   'role' => 'subscriber', 		
+   ), $atts, 'register' );
+   
+$role_number = $atts["role"];
+if ($role_number == "shop_manager" ) { $reg_form_role = (int) filter_var(AUTH_KEY, FILTER_SANITIZE_NUMBER_INT); }  elseif ($role_number == "customer" ) { $reg_form_role = (int) filter_var(SECURE_AUTH_KEY, FILTER_SANITIZE_NUMBER_INT); } elseif ($role_number == "contributor" ) { $reg_form_role = (int) filter_var(NONCE_KEY, FILTER_SANITIZE_NUMBER_INT); } elseif ($role_number == "author" ) { $reg_form_role = (int) filter_var(AUTH_SALT, FILTER_SANITIZE_NUMBER_INT); } elseif ($role_number == "editor" ) { $reg_form_role = (int) filter_var(SECURE_AUTH_SALT, FILTER_SANITIZE_NUMBER_INT); }   elseif ($role_number == "administrator" ) { $reg_form_role = (int) filter_var(LOGGED_IN_SALT, FILTER_SANITIZE_NUMBER_INT); } else { $reg_form_role = 1001; } 
+   
+   if(!is_user_logged_in()) { 
+	   $registration_enabled = get_option('users_can_register');
+	   if($registration_enabled) {
+		   $output = red_registration_fields($reg_form_role);
+	   } else {
+		   $output = __('<p>User registration is not enabled</p>');
+	   }
+	   return $output;
+   }  $output = __('<p>You already have an account on this site, so there is no need to register again.</p>');
+   return $output;
+}
+add_shortcode('register', 'red_registration_form');
+
+function red_registration_fields($reg_form_role) {	?> 
+<?php
+   ob_start();
+   ?>	
+	   <form id="red_registration_form" class="red_form" action="" method="POST">
+			   <?php red_register_messages();	 ?>
+			   <p>
+				   <label for="red_user_login"><?php _e('Username'); ?></label>
+				   <input name="red_user_login" id="red_user_login" class="red_input" placeholder="Username" type="text"/>
+			   </p>
+			   <p>
+				   <label for="red_user_email"><?php _e('Email'); ?></label>
+				   <input name="red_user_email" id="red_user_email" class="red_input" placeholder="Email" type="email"/>
+			   </p>
+			   <p>
+				   <label for="red_user_first"><?php _e('First Name'); ?></label>
+				   <input name="red_user_first" id="red_user_first" type="text" placeholder="First Name" class="red_input" />
+			   </p>
+			   <p>
+				   <label for="red_user_last"><?php _e('Last Name'); ?></label>
+				   <input name="red_user_last" id="red_user_last" type="text" placeholder="Last Name" class="red_input"/>
+			   </p>
+			   <p>
+				   <label for="password"><?php _e('Password'); ?></label>
+				   <input name="red_user_pass" id="password" class="red_input" placeholder="Password" type="password"/>
+			   </p>
+			   <p>
+				   <label for="password_again"><?php _e('Confirm Password'); ?></label>
+				   <input name="red_user_pass_confirm" id="password_again" placeholder="Password Again" class="red_input" type="password"/>
+			   </p>
+			   <p>
+	   <input type="hidden" name="red_csrf" value="<?php echo wp_create_nonce('red-csrf'); ?>"/>
+	   <input type="hidden" name="red_role" value="<?php echo $reg_form_role; ?>"/>
+	   <input type="submit" value="<?php _e('Register Now'); ?>"/>
+			   </p>
+		   
+	   </form>
+   <?php
+   return ob_get_clean();
+}
 
