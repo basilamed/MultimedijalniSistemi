@@ -497,13 +497,26 @@ function red_add_new_user() {
 }
 add_shortcode('login', 'red_login_form');
 
+function red_login_messages($error_type) {
+    if ($codes = red_errors()->get_error_codes()) {
+        echo '<div class="red_errors">';
+        foreach ($codes as $code) {
+            $message = red_errors()->get_error_message($code);
+            if ($error_type && $code === $error_type) {
+                echo '<span class="error"><strong>' . __('Error') . '</strong>: ' . $message . '</span><br/>';
+            }
+        }
+        echo '</div>';
+    }
+}
+
 function red_login_fields() {
     ?> 
 <?php
    ob_start();
    ?>	
 	   <form id="red_registration_form" class="red_form" action="" method="POST">
-			   <?php red_register_messages();	 ?>
+			   <?php red_login_messages('login_failed');	 ?>
 			   <p>
 				   <label for="red_user_login"><?php _e('Username'); ?></label>
 				   <input name="red_user_login" id="red_user_login" class="red_input" placeholder="Username" type="text"/>
@@ -604,8 +617,26 @@ function red_attempt_login() {
             'user_password' => $user_pass,
         ), false);
 
+        $errors = red_errors(); 
+
         if (is_wp_error($user)) {
-            red_errors()->add('login_failed', __('Invalid username or password.'));
+            $error_codes = $errors->get_error_codes();
+
+            foreach ($error_codes as $code) {
+                if ($code !== 'login_failed') {
+                    $errors->remove($code);
+                }
+            }
+
+            $error_message = $user->get_error_message();
+
+            if (strpos($error_message, 'invalid_username') !== false || strpos($error_message, 'invalid_email') !== false) {
+                $errors->add('login_failed', __('Invalid username or email.'));
+            } elseif (strpos($error_message, 'incorrect_password') !== false) {
+                $errors->add('login_failed', __('Incorrect username or password.'));
+            } else {
+                $errors->add('login_failed', $error_message);
+            }
         } else {
             wp_set_auth_cookie($user->ID, true);
             wp_set_current_user($user->ID, $user_login);
@@ -615,4 +646,6 @@ function red_attempt_login() {
         }
     }
 }
+
+
 add_action('init', 'red_attempt_login');
