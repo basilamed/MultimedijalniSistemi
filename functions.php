@@ -471,5 +471,19 @@ function red_add_new_user() {
  }
  add_action('init', 'red_add_new_user');
  
+ function red_errors(){
+	static $wp_error; 
+	return isset($wp_error) ? $wp_error : ($wp_error = new WP_Error(null, null, null));
+ }
+ function red_register_messages() {
+	if($codes = red_errors()->get_error_codes()) {
+		echo '<div class="red_errors">';
+		   foreach($codes as $code){
+				$message = red_errors()->get_error_message($code);
+				echo '<span class="error"><strong>' . __('Error') . '</strong>: ' . $message . '</span><br/>';
+			}
+		echo '</div>';
+	}	
+ }
  
  
