@@ -340,6 +340,77 @@ function red_registration_fields($reg_form_role) {	?>
 			   </p>
 		   
 	   </form>
+	   <style>
+			.red_form {
+			width: 450px !important;
+			max-width: 95% !important;
+			padding: 30px 20px;
+			box-shadow: 0px 0px 20px 0px #00000012, 0px 50px 40px -50px #00000038;
+			background-color: #f9f9f9;
+			border-radius: 8px;
+			margin: 20px auto;
+			}
+
+			.red_form p {
+			margin-bottom: 15px;
+			}
+
+			.red_form label {
+			display: block;
+			font-size: 16px;
+			margin-bottom: 5px;
+			color: #333;
+			}
+
+			.red_input {
+			width: 100%;
+			padding: 10px;
+			font-size: 14px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			box-sizing: border-box;
+			}
+
+			.red_input:focus {
+			outline: none;
+			border-color: #6dabe4;
+			box-shadow: 0 0 5px rgba(109, 171, 228, 0.5);
+			}
+
+			.red_errors {
+			color: #ee0000;
+			margin-bottom: 12px;
+			width: 450px !important;
+			max-width: 95% !important;
+			}
+
+			.red_form label::after {
+			content: " *";
+			color: red;
+			font-weight: bold;
+			}
+
+			.red_form input[type="submit"] {
+			background-color: #ef4229;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			}
+
+			.red_form input[type="submit"]:hover {
+			background-color: #45a049;
+			}
+
+			@media (max-width: 600px) {
+			.red_form {
+				width: 100% !important;
+			}
+			}
+		</style>
+
    <?php
    return ob_get_clean();
 }
