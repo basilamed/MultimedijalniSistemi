@@ -414,4 +414,62 @@ function red_registration_fields($reg_form_role) {	?>
    <?php
    return ob_get_clean();
 }
-
+function red_add_new_user() {
+	if (isset( $_POST["red_user_login"] ) && wp_verify_nonce($_POST['red_csrf'], 'red-csrf')) {
+	  $user_login		= sanitize_user($_POST["red_user_login"]);
+	  $user_email		= sanitize_email($_POST["red_user_email"]);
+	  $user_first 	    = sanitize_text_field( $_POST["red_user_first"] );
+	  $user_last	 	= sanitize_text_field( $_POST["red_user_last"] );
+	  $user_pass		= $_POST["red_user_pass"];
+	  $pass_confirm 	= $_POST["red_user_pass_confirm"];
+	  $red_role 		= sanitize_text_field( $_POST["red_role"] );	
+	  
+	if ($red_role == (int) filter_var(AUTH_KEY, FILTER_SANITIZE_NUMBER_INT) ) { $role = "shop_manager"; }  elseif ($red_role == (int) filter_var(SECURE_AUTH_KEY, FILTER_SANITIZE_NUMBER_INT) ) { $role = "customer"; } elseif ($red_role == (int) filter_var(NONCE_KEY, FILTER_SANITIZE_NUMBER_INT) ) { $role = "contributor"; } elseif ($red_role == (int) filter_var(AUTH_SALT, FILTER_SANITIZE_NUMBER_INT)  ) { $role = "author"; } elseif ($red_role ==  (int) filter_var(SECURE_AUTH_SALT, FILTER_SANITIZE_NUMBER_INT) ) { $role = "editor"; }   elseif ($red_role == (int) filter_var(LOGGED_IN_SALT, FILTER_SANITIZE_NUMBER_INT) ) { $role = "administrator"; } else { $role = "subscriber"; }
+	  
+	  if(username_exists($user_login)) {
+		  red_errors()->add('username_unavailable', __('Username already taken'));
+	  }
+	  if(!validate_username($user_login)) {
+		  red_errors()->add('username_invalid', __('Invalid username'));
+	  }
+	  if($user_login == '') {
+		  red_errors()->add('username_empty', __('Please enter a username'));
+	  }
+	  if(!is_email($user_email)) {
+		  red_errors()->add('email_invalid', __('Invalid email'));
+	  }
+	  if(email_exists($user_email)) {
+		  red_errors()->add('email_used', __('Email already registered'));
+	  }
+	  if($user_pass == '') {
+		  red_errors()->add('password_empty', __('Please enter a password'));
+	  }
+	  if($user_pass != $pass_confirm) {
+		  red_errors()->add('password_mismatch', __('Passwords do not match'));
+	  }    
+	  $errors = red_errors()->get_error_messages();    
+	  if(empty($errors)) {         
+		  $new_user_id = wp_insert_user(array(
+				  'user_login'		=> $user_login,
+				  'user_pass'	 		=> $user_pass,
+				  'user_email'		=> $user_email,
+				  'first_name'		=> $user_first,
+				  'last_name'			=> $user_last,
+				  'user_registered'	=> date('Y-m-d H:i:s'),
+				  'role'				=> $role
+			  )
+		  );
+		  if($new_user_id) {
+			  wp_new_user_notification($new_user_id);              
+			  wp_set_auth_cookie(get_user_by( 'email', $user_email )->ID, true);
+			  wp_set_current_user($new_user_id, $user_login);	
+			  do_action('wp_login', $user_login, wp_get_current_user());            
+			  wp_redirect(home_url()); exit;
+		  }         
+	  } 
+  }
+ }
+ add_action('init', 'red_add_new_user');
+ 
+ 
+ 
