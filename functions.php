@@ -486,4 +486,58 @@ function red_add_new_user() {
 	}	
  }
  
- 
+ function red_login_form($atts) {
+    $atts = shortcode_atts(array(), $atts, 'login');
+
+    if (!is_user_logged_in()) {
+        return red_login_fields(); // Use return directly here
+    } else {
+        return __('<p>You are already logged in.</p>');
+    }
+}
+add_shortcode('login', 'red_login_form');
+
+function red_login_fields() {
+    ob_start();
+    ?>
+    <form id="red_login_form" class="red_form" action="" method="POST">
+        <?php red_register_messages(); ?>
+        <p>
+            <label for="red_user_login"><?php _e('Username'); ?></label>
+            <input name="red_user_login" id="red_user_login" class="red_input" placeholder="Username" type="text"/>
+        </p>
+        <p>
+            <label for="password"><?php _e('Password'); ?></label>
+            <input name="red_user_pass" id="password" class="red_input" placeholder="Password" type="password"/>
+        </p>
+        <p>
+            <input type="hidden" name="red_csrf" value="<?php echo wp_create_nonce('red-csrf'); ?>"/>
+            <input type="submit" value="<?php _e('Login'); ?>"/>
+        </p>
+    </form>
+    <?php
+    return ob_get_clean();
+}
+
+function red_attempt_login() {
+    if (isset($_POST["red_user_login"]) && wp_verify_nonce($_POST['red_csrf'], 'red-csrf')) {
+        $user_login = sanitize_user($_POST["red_user_login"]);
+        $user_pass = $_POST["red_user_pass"];
+
+        $user = wp_signon(array(
+            'user_login'    => $user_login,
+            'user_password' => $user_pass,
+        ), false);
+
+        if (is_wp_error($user)) {
+            red_errors()->add('login_failed', __('Invalid username or password.'));
+        } else {
+            wp_set_auth_cookie($user->ID, true);
+            wp_set_current_user($user->ID, $user_login);
+            do_action('wp_login', $user_login, $user);
+            wp_redirect(home_url());
+            exit;
+        }
+    }
+}
+add_action('init', 'red_attempt_login');
