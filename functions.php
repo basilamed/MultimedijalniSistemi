@@ -498,24 +498,99 @@ function red_add_new_user() {
 add_shortcode('login', 'red_login_form');
 
 function red_login_fields() {
-    ob_start();
-    ?>
-    <form id="red_login_form" class="red_form" action="" method="POST">
-        <?php red_register_messages(); ?>
-        <p>
-            <label for="red_user_login"><?php _e('Username'); ?></label>
-            <input name="red_user_login" id="red_user_login" class="red_input" placeholder="Username" type="text"/>
-        </p>
-        <p>
-            <label for="password"><?php _e('Password'); ?></label>
-            <input name="red_user_pass" id="password" class="red_input" placeholder="Password" type="password"/>
-        </p>
-        <p>
-            <input type="hidden" name="red_csrf" value="<?php echo wp_create_nonce('red-csrf'); ?>"/>
-            <input type="submit" value="<?php _e('Login'); ?>"/>
-        </p>
-    </form>
-    <?php
+    ?> 
+<?php
+   ob_start();
+   ?>	
+	   <form id="red_registration_form" class="red_form" action="" method="POST">
+			   <?php red_register_messages();	 ?>
+			   <p>
+				   <label for="red_user_login"><?php _e('Username'); ?></label>
+				   <input name="red_user_login" id="red_user_login" class="red_input" placeholder="Username" type="text"/>
+			   </p>
+			   <p>
+				   <label for="password"><?php _e('Password'); ?></label>
+				   <input name="red_user_pass" id="password" class="red_input" placeholder="Password" type="password"/>
+			   </p>
+			 
+			   <p>
+	   <input type="hidden" name="red_csrf" value="<?php echo wp_create_nonce('red-csrf'); ?>"/>
+	   <input type="submit" value="<?php _e('Login'); ?>"/>
+			   </p>
+		   
+	   </form>
+	   <style>
+			.red_form {
+			width: 450px !important;
+			max-width: 95% !important;
+			padding: 30px 20px;
+			box-shadow: 0px 0px 20px 0px #00000012, 0px 50px 40px -50px #00000038;
+			background-color: #f9f9f9;
+			border-radius: 8px;
+			margin: 20px auto;
+			}
+
+			.red_form p {
+			margin-bottom: 15px;
+			}
+
+			.red_form label {
+			display: block;
+			font-size: 16px;
+			margin-bottom: 5px;
+			color: #333;
+			}
+
+			.red_input {
+			width: 100%;
+			padding: 10px;
+			font-size: 14px;
+			border: 1px solid #ddd;
+			border-radius: 5px;
+			box-sizing: border-box;
+			}
+
+			.red_input:focus {
+			outline: none;
+			border-color: #6dabe4;
+			box-shadow: 0 0 5px rgba(109, 171, 228, 0.5);
+			}
+
+			.red_errors {
+			color: #ee0000;
+			margin-bottom: 12px;
+			width: 450px !important;
+			max-width: 95% !important;
+			}
+
+			.red_form label::after {
+			content: " *";
+			color: red;
+			font-weight: bold;
+			}
+
+			.red_form input[type="submit"] {
+			background-color: #ef4229;
+			color: white;
+			padding: 12px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			}
+
+			.red_form input[type="submit"]:hover {
+			background-color: #45a049;
+			}
+
+			@media (max-width: 600px) {
+			.red_form {
+				width: 100% !important;
+			}
+			}
+		</style>
+
+   <?php
     return ob_get_clean();
 }
 
