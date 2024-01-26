@@ -282,6 +282,74 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
+
+//newsletter form 
+function custom_newsletter_form() {
+    ob_start(); ?>
+    <div class="custom-newsletter-form">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form id="custom-newsletter-form" method="post">
+            <input type="email" name="email" placeholder="Your Email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <div class="custom-newsletter-message"></div>
+    </div>
+    <style>
+        .custom-newsletter-form {
+            margin: 0 auto;
+        }
+        .custom-newsletter-form h2 {
+            margin-bottom: 20px;
+        }
+        .custom-newsletter-form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .custom-newsletter-form button {
+            padding: 10px;
+            background-color: #ef4229;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+        .custom-newsletter-message {
+            margin-top: 20px;
+        }
+    </style>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('custom_newsletter_form', 'custom_newsletter_form');
+
+// Handle form submission
+function custom_newsletter_form_handler() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
+        $email = sanitize_email($_POST["email"]);
+        if (is_email($email)) {
+            // Send welcome email
+            $subject = 'Welcome to Our Newsletter!';
+            $message = 'Thank you for subscribing to our newsletter!';
+            $headers = 'From: Halida i Basila <cistije.sutra@gmail.com>';
+
+            wp_mail($email, $subject, $message, $headers);
+            // For demonstration purposes, we'll just return a success message
+            echo json_encode(array('success' => true, 'message' => 'Thank you for subscribing!'));
+        } else {
+            echo json_encode(array('success' => false, 'message' => 'Invalid email address!'));
+        }
+    } else {
+        echo json_encode(array('success' => false, 'message' => 'Invalid request!'));
+    }
+    exit();
+}
+
+add_action('wp_ajax_custom_newsletter_form_submit', 'custom_newsletter_form_handler');
+add_action('wp_ajax_nopriv_custom_newsletter_form_submit', 'custom_newsletter_form_handler');
+=======
 function red_registration_form($atts) {
 	$atts = shortcode_atts( array(
 	   'role' => 'subscriber', 		
@@ -649,3 +717,4 @@ function red_attempt_login() {
 
 
 add_action('init', 'red_attempt_login');
+
