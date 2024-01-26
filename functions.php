@@ -345,3 +345,5 @@ function custom_newsletter_form_handler() {
     }
     exit();
 }
+
+add_action('wp_ajax_custom_newsletter_form_submit', 'custom_newsletter_form_handler');
