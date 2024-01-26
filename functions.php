@@ -293,6 +293,32 @@ function custom_newsletter_form() {
         </form>
         <div class="custom-newsletter-message"></div>
     </div>
+    <style>
+        .custom-newsletter-form {
+            margin: 0 auto;
+        }
+        .custom-newsletter-form h2 {
+            margin-bottom: 20px;
+        }
+        .custom-newsletter-form input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .custom-newsletter-form button {
+            padding: 10px;
+            background-color: #ef4229;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+        }
+        .custom-newsletter-message {
+            margin-top: 20px;
+        }
+    </style>
     <?php
     return ob_get_clean();
 }
