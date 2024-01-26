@@ -282,4 +282,18 @@ require get_template_directory() . '/inc/customizer.php';
 if ( defined( 'JETPACK__VERSION' ) ) {
 	require get_template_directory() . '/inc/jetpack.php';
 }
-
+//newsletter form 
+function custom_newsletter_form() {
+    ob_start(); ?>
+    <div class="custom-newsletter-form">
+        <h2>Subscribe to Our Newsletter</h2>
+        <form id="custom-newsletter-form" method="post">
+            <input type="email" name="email" placeholder="Your Email" required>
+            <button type="submit">Subscribe</button>
+        </form>
+        <div class="custom-newsletter-message"></div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('custom_newsletter_form', 'custom_newsletter_form');
