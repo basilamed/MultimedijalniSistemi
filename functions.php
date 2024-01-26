@@ -323,3 +323,25 @@ function custom_newsletter_form() {
     return ob_get_clean();
 }
 add_shortcode('custom_newsletter_form', 'custom_newsletter_form');
+
+// Handle form submission
+function custom_newsletter_form_handler() {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["email"])) {
+        $email = sanitize_email($_POST["email"]);
+        if (is_email($email)) {
+            // Send welcome email
+            $subject = 'Welcome to Our Newsletter!';
+            $message = 'Thank you for subscribing to our newsletter!';
+            $headers = 'From: Halida i Basila <cistije.sutra@gmail.com>';
+
+            wp_mail($email, $subject, $message, $headers);
+            // For demonstration purposes, we'll just return a success message
+            echo json_encode(array('success' => true, 'message' => 'Thank you for subscribing!'));
+        } else {
+            echo json_encode(array('success' => false, 'message' => 'Invalid email address!'));
+        }
+    } else {
+        echo json_encode(array('success' => false, 'message' => 'Invalid request!'));
+    }
+    exit();
+}
