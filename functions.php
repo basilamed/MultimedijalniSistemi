@@ -349,7 +349,7 @@ function custom_newsletter_form_handler() {
 
 add_action('wp_ajax_custom_newsletter_form_submit', 'custom_newsletter_form_handler');
 add_action('wp_ajax_nopriv_custom_newsletter_form_submit', 'custom_newsletter_form_handler');
-=======
+
 function red_registration_form($atts) {
 	$atts = shortcode_atts( array(
 	   'role' => 'subscriber', 		
