@@ -1,0 +1,12 @@
+:root {
+    --button-color: #4CAF50; /* Green color similar to ChatGPT */
+    --button-color-hover: #45a049; /* Darker shade on hover */
+    --button-color-active: #4CAF50; /* Same as button color on active state */
+    --button-padding: 5px 10px;
+    --button-border-radius: 3px;
+    --button-z-index: 1001;
+    --chat-window-width: 300px; /* Updated width */
+    --chat-window-height: 400px; /* Updated height */
+    --chat-window-background: #333; /* Dark gray background */
+    --text-color: white; /* White text color */
+}
