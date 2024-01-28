@@ -85,3 +85,33 @@ function addMessage(sender, message) {
     const messageDiv = createElementWithProps("div", { innerHTML: `<b>${sender}:</b> ${message}` });
     messagesContainer.appendChild(messageDiv);
 }
+
+function setLoading(isLoading) {
+    const sendButton = document.getElementById("chatgpt-send-button");
+    sendButton.disabled = isLoading;
+    sendButton.textContent = isLoading ? "..." : "Send";
+}
+
+async function sendMessageToServer(message) {
+    setLoading(true);
+    try {
+        const response = await fetch("/wp-json/chatgpt/v1/message/", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ message: message }),
+        });
+
+        const data = await response.json();
+
+        if (data.choices && data.choices.length > 0) {
+            const reply = data.choices[0].message.content;
+            addMessage("ChatGPT", reply);
+        }
+    } catch (error) {
+        console.error("Error:", error);
+    }
+
+    setLoading(false);
+}
