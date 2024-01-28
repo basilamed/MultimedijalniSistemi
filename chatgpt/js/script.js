@@ -68,3 +68,14 @@ function handleKeyPress(e) {
         sendMessage();
     }
 }
+
+function sendMessage() {
+    const input = document.getElementById("chatgpt-input");
+    const message = input.value.trim();
+
+    if (message !== "") {
+        addMessage("You", message);
+        input.value = "";
+        sendMessageToServer(message);
+    }
+}
