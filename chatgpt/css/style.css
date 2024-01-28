@@ -50,3 +50,17 @@
     text-align: center;
 }
 
+#chatgpt-chat-window {
+    position: fixed;
+    bottom: calc(var(--chat-window-height) / 10); /* Adjusted for a slightly higher position */
+    right: 20px;
+    width: var(--chat-window-width);
+    height: var(--chat-window-height);
+    background-color: var(--chat-window-background);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: none;
+    z-index: var(--button-z-index);
+    flex-direction: column;
+}
+
