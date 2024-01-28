@@ -27,3 +27,15 @@ function createChatInterface() {
     // Append the button and chat window to the document body
     document.body.append(chatButton, chatWindow);
 }
+
+function handleChatInterfaceEvents() {
+    const chatButton = document.getElementById("chatgpt-button");
+    const chatWindow = document.getElementById("chatgpt-chat-window");
+    const messagesContainer = document.getElementById("chatgpt-messages");
+    const input = document.getElementById("chatgpt-input");
+    const sendButton = document.getElementById("chatgpt-send-button");
+
+    chatButton.addEventListener("click", toggleChatWindow);
+    input.addEventListener("keypress", handleKeyPress);
+    sendButton.addEventListener("click", sendMessage);
+}
