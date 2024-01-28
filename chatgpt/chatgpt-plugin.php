@@ -34,3 +34,24 @@ function handle_chatgpt_request(WP_REST_Request $request) {
         return new WP_Error('empty_message', 'No message provided', array('status' => 422));
     }
 }
+
+function send_message_to_openai($message) {
+    $api_key = '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';
+    $ch = curl_init('https://api.openai.com/v1/chat/completions'); // Update the URL to the desired model's endpoint
+
+    $data = array(
+        'model' => 'gpt-3.5-turbo',
+        'messages' => array(
+            array(
+                'role' => 'user',
+                'content' => $message,
+            ),
+        )
+    );
+    
+    $temp = json_encode($data);
+
+    
+
+    return json_decode($response, true);
+}
