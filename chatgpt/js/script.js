@@ -39,3 +39,20 @@ function handleChatInterfaceEvents() {
     input.addEventListener("keypress", handleKeyPress);
     sendButton.addEventListener("click", sendMessage);
 }
+
+function createElementWithProps(tag, props) {
+    const element = document.createElement(tag);
+    Object.assign(element, props);
+    return element;
+}
+
+function getChatWindowHTML() {
+    return `
+    <div id="chatgpt-title">ChatGPT</div>
+    <div id="chatgpt-messages"></div>
+    <div id="chatgpt-input-container">
+        <input type="text" id="chatgpt-input" placeholder="Type your message..."/>
+        <button id="chatgpt-send-button">Send</button>
+    </div>
+    `;
+}
