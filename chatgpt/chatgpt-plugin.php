@@ -6,11 +6,13 @@
  * Author: Halida i Basila
  */
 function chatgpt_enqueue_scripts() {
-    
+    wp_enqueue_style('chatgpt-style', plugins_url('/css/style.css', __FILE__));
     wp_enqueue_script('chatgpt-script', plugins_url('/js/script.js', __FILE__), array('jquery'), '1.0', true);
 }
 
 add_action('wp_enqueue_scripts', 'chatgpt_enqueue_scripts');
+
+
  add_action('rest_api_init', function () {
     register_rest_route('chatgpt/v1', '/message/', array(
         'methods' => 'POST',
@@ -24,7 +26,7 @@ function handle_chatgpt_request(WP_REST_Request $request) {
     error_log('Request Data: ' . print_r($request_data, true)); // Log the request data
 
     // Parse the request data
-    $message = $request_data['message'] ?? '';
+    $message = isset($request_data['message']) ? $request_data['message'] : '';
 
     if (!empty($message)) {
         // Log the parsed message
