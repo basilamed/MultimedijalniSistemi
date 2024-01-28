@@ -1,0 +1,108 @@
+:root {
+    --button-color: #4CAF50; /* Green color similar to ChatGPT */
+    --button-color-hover: #45a049; /* Darker shade on hover */
+    --button-color-active: #4CAF50; /* Same as button color on active state */
+    --button-padding: 5px 10px;
+    --button-border-radius: 3px;
+    --button-z-index: 1001;
+    --chat-window-width: 300px; /* Updated width */
+    --chat-window-height: 400px; /* Updated height */
+    --chat-window-background: #333; /* Dark gray background */
+    --text-color: white; /* White text color */
+}
+
+#chatgpt-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    z-index: var(--button-z-index);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+
+    &:hover {
+        background-color: var(--button-color-hover);
+    }
+
+    &:active {
+        background-color: var(--button-color-active);
+    }
+}
+
+#chatgpt-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    background-color: #333;
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    text-align: center;
+}
+
+#chatgpt-chat-window {
+    position: fixed;
+    bottom: calc(var(--chat-window-height) / 10); /* Adjusted for a slightly higher position */
+    right: 20px;
+    width: var(--chat-window-width);
+    height: var(--chat-window-height);
+    background-color: var(--chat-window-background);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    display: none;
+    z-index: var(--button-z-index);
+    flex-direction: column;
+}
+
+#chatgpt-messages {
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+/* Chat input container styling */
+#chatgpt-input-container {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    background: #f0f0f0; /* Lighter gray background */
+    border-top: 1px solid #ccc;
+}
+
+#chatgpt-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+#chatgpt-send-button {
+    background: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: var(--button-border-radius);
+    padding: var(--button-padding);
+    cursor: pointer;
+    z-index: var(--button-z-index);
+    width: 72px;
+    flex-shrink: 0;
+
+    &:hover {
+        background-color: var(--button-color-hover);
+    }
+
+    &:active {
+        background-color: var(--button-color-active);
+    }
+}
