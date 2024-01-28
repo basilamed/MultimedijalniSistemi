@@ -62,3 +62,9 @@ function toggleChatWindow() {
     const isDisplayed = chatWindow.style.display === "flex";
     chatWindow.style.display = isDisplayed ? "none" : "flex";
 }
+
+function handleKeyPress(e) {
+    if (e.key === "Enter") {
+        sendMessage();
+    }
+}
