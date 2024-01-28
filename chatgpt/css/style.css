@@ -80,3 +80,9 @@
     border-top: 1px solid #ccc;
 }
 
+#chatgpt-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
