@@ -43,7 +43,7 @@ function handle_chatgpt_request(WP_REST_Request $request) {
 }
 
 function send_message_to_openai($message) {
-    $api_key = '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';
+    $api_key = 'sk';
     $ch = curl_init('https://api.openai.com/v1/chat/completions'); // Update the URL to the desired model's endpoint
 
     $data = array(
