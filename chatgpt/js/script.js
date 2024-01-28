@@ -56,3 +56,9 @@ function getChatWindowHTML() {
     </div>
     `;
 }
+
+function toggleChatWindow() {
+    const chatWindow = document.getElementById("chatgpt-chat-window");
+    const isDisplayed = chatWindow.style.display === "flex";
+    chatWindow.style.display = isDisplayed ? "none" : "flex";
+}
