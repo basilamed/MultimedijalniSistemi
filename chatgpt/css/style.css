@@ -64,3 +64,19 @@
     flex-direction: column;
 }
 
+#chatgpt-messages {
+    padding: 20px;
+    overflow-y: auto;
+    flex-grow: 1;
+    margin-bottom: 10px;
+}
+
+/* Chat input container styling */
+#chatgpt-input-container {
+    display: flex;
+    padding: 10px;
+    gap: 10px;
+    background: #f0f0f0; /* Lighter gray background */
+    border-top: 1px solid #ccc;
+}
+
