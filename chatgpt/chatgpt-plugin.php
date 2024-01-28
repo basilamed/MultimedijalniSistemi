@@ -5,7 +5,12 @@
  * Version: 1.0
  * Author: Halida i Basila
  */
+function chatgpt_enqueue_scripts() {
+    
+    wp_enqueue_script('chatgpt-script', plugins_url('/js/script.js', __FILE__), array('jquery'), '1.0', true);
+}
 
+add_action('wp_enqueue_scripts', 'chatgpt_enqueue_scripts');
  add_action('rest_api_init', function () {
     register_rest_route('chatgpt/v1', '/message/', array(
         'methods' => 'POST',
