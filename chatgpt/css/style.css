@@ -86,3 +86,23 @@
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+#chatgpt-send-button {
+    background: var(--button-color);
+    color: white;
+    border: none;
+    border-radius: var(--button-border-radius);
+    padding: var(--button-padding);
+    cursor: pointer;
+    z-index: var(--button-z-index);
+    width: 72px;
+    flex-shrink: 0;
+
+    &:hover {
+        background-color: var(--button-color-hover);
+    }
+
+    &:active {
+        background-color: var(--button-color-active);
+    }
+}
