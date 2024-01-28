@@ -79,3 +79,9 @@ function sendMessage() {
         sendMessageToServer(message);
     }
 }
+
+function addMessage(sender, message) {
+    const messagesContainer = document.getElementById("chatgpt-messages");
+    const messageDiv = createElementWithProps("div", { innerHTML: `<b>${sender}:</b> ${message}` });
+    messagesContainer.appendChild(messageDiv);
+}
