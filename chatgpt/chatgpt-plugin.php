@@ -12,3 +12,25 @@
         'callback' => 'handle_chatgpt_request',
     ));
 });
+
+function handle_chatgpt_request(WP_REST_Request $request) {
+    // Log the request data received
+    $request_data = $request->get_json_params(); // Get JSON parameters from the request
+    error_log('Request Data: ' . print_r($request_data, true)); // Log the request data
+
+    // Parse the request data
+    $message = $request_data['message'] ?? '';
+
+    if (!empty($message)) {
+        // Log the parsed message
+        error_log('Parsed Message: ' . $message);
+
+        // Send the message to the OpenAI API
+        $response = send_message_to_openai($message);
+        return new WP_REST_Response($response, 200);
+    } else {
+        // Log an error if no message provided
+        error_log('No message provided');
+        return new WP_Error('empty_message', 'No message provided', array('status' => 422));
+    }
+}
