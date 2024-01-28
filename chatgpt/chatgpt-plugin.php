@@ -51,7 +51,18 @@ function send_message_to_openai($message) {
     
     $temp = json_encode($data);
 
-    
+    $headers = array(
+        'Content-Type: application/json',
+        'Authorization: Bearer ' . $api_key
+    );
+
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+    curl_setopt($ch, CURLOPT_POST, 1);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+    $response = curl_exec($ch);
+    curl_close($ch);
 
     return json_decode($response, true);
 }
